@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: Congratulator
+
+server:
+  port: 8080
+
