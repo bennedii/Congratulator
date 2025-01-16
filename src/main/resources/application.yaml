@@ -1,7 +1,17 @@
 spring:
-  application:
-    name: Congratulator
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
 
-server:
-  port: 8080
-
+upload:
+  path: C:/Users/ilya/Documents/GitHub/Congratulator/src/main/resources/static/images
