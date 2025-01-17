@@ -25,21 +25,19 @@
 </form>
 
 <div class="container mt-4">
-    <h1>Upcoming Birthdays</h1>
+    <h1>Наступающие дни рождения(в течении месяца)</h1>
     <table class="table">
         <thead>
         <tr>
-            <th>Profile Image</th>
-            <th>Name</th>
-            <th>Date of Birth</th>
+            <th>Изображение профиля</th>
+            <th>Имя</th>
+            <th>Дата рождения</th>
         </tr>
         </thead>
         <tbody>
-        <!-- Используем Thymeleaf для перебора списка и вывода данных -->
         <tr th:each="birthday : ${birthdays}">
             <td>
-                <!-- Отображение изображения по пути, который хранится в photoPath -->
-                <img th:src="@{static/images/{filename}(filename=${birthday.photoPath})}" alt="Profile Image" width="50" height="50">
+                <img th:src="@{src/main/images/{filename}(filename=${birthday.photoPath})}" alt="Profile Image" width="50" height="50">
 
             </td>
             <td th:text="${birthday.name}"></td>

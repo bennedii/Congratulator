@@ -12,4 +12,7 @@ public interface BirthdayRepository extends JpaRepository<BirthdayEntity, Long> 
     @Query(value = "SELECT b FROM BirthdayEntity b where b.dateOfBirth between :start and :end")
     List<BirthdayEntity> findByDateOfBirthBetween(@Param("start") LocalDate startDate,
                                                   @Param("end") LocalDate endDate);
+
+    @Query(value = "SELECT b FROM BirthdayEntity b WHERE b.dateOfBirth = :today")
+    List<BirthdayEntity> findTodayBirthdays(@Param("today") LocalDate today);
 }

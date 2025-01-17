@@ -6,7 +6,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,5 +32,12 @@ public class BirthdayService {
 
     public List<BirthdayEntity> getUpcomingBirthdays() {
         return birthdayRepository.findByDateOfBirthBetween(LocalDate.now().minusDays(1), LocalDate.now().plusMonths(1));
+    }
+    public List<BirthdayEntity> getTodayBirthdays() {
+        return birthdayRepository.findTodayBirthdays(LocalDate.now());
+    }
+
+    public List<BirthdayEntity> getBirthdaysInOneWeek() {
+        return birthdayRepository.findByDateOfBirthBetween(LocalDate.now().plusDays(1),LocalDate.now().plusWeeks(1));
     }
 }
