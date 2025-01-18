@@ -14,10 +14,11 @@ spring:
     open-in-view: false
   web:
     resources:
-      static-locations: file:upload/
+      static-locations: file:./upload/images/
+      add-mappings: false
 
 upload:
-  path: src/main/upload/images
+  path: upload/images
 
 telegram:
   token: 7625407687:AAFy-u9xQNpzavjupGTiTFS-Wd40rRHYBGs

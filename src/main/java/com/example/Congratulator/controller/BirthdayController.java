@@ -28,5 +28,18 @@ public class BirthdayController {
                                                       @RequestParam String name) {
         return new ResponseEntity<>(bService.addBirthday(file,birthday,name), HttpStatus.CREATED);
     }
+    @DeleteMapping("/deleteBirthday/{id}")
+    public ResponseEntity<String> deleteBirthday(@PathVariable Long id) {
+        bService.deleteBirthday(id);
+        return ResponseEntity.ok("Birthday deleted successfully");
+    }
+
+    @PostMapping("/updateBirthday/{id}")
+    public ResponseEntity<BirthdayEntity> updateBirthday(@PathVariable Long id,
+                                                         @RequestParam("name") String name,
+                                                         @RequestParam("dateOfBirth") LocalDate dateOfBirth,
+                                                         @RequestParam(value = "file", required = false) MultipartFile file) {
+        return ResponseEntity.ok(bService.updateBirthday(id, name, dateOfBirth, file));
+    }
 
 }

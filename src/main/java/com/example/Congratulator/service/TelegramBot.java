@@ -14,6 +14,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -83,11 +84,13 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
     public void sendImage(String chatId, String imageText, String imageUrl) {
         try{
-        ClassPathResource resource = new ClassPathResource("upload/images/" + imageUrl);
-        SendPhoto sendPhoto = new SendPhoto();
-        sendPhoto.setChatId(chatId);
-        sendPhoto.setPhoto(new InputFile(resource.getFile()));
-        sendPhoto.setCaption(imageText);
+            String imagePath = System.getProperty("user.dir") + "/upload/images/" + imageUrl;
+            File file = new File(imagePath);
+
+            SendPhoto sendPhoto = new SendPhoto();
+            sendPhoto.setChatId(chatId);
+            sendPhoto.setPhoto(new InputFile(file));
+            sendPhoto.setCaption(imageText);
             execute(sendPhoto);
         } catch (Exception exception){
             log.error("Error while sending message: ", exception);

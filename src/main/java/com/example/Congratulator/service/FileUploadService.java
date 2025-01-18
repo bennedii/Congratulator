@@ -21,20 +21,16 @@ public class FileUploadService {
 
     public String uploadFile(MultipartFile file) {
         try {
-            // Проверка на существование директории, если её нет — создание
             File dir = new File(path);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
 
-            // Генерация уникального имени для файла
             String fileName = UUID.randomUUID().toString() + '-' + file.getOriginalFilename();
             Path path = Paths.get(this.path + File.separator + fileName);
 
-            // Запись файла в указанную папку
             Files.write(path, file.getBytes());
 
-            // Возвращаем путь к сохраненному файлу
             return fileName;
 
         } catch (IOException e) {
