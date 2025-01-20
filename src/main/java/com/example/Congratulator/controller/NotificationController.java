@@ -19,11 +19,11 @@ public class NotificationController {
     }
 
     @PostMapping("/setCurrentChatId")
-    public ResponseEntity<String> setCurrentChatId(@RequestParam String chatId) {
-        if (!notificationService.isChatIdIsValid(chatId)) {
+    public ResponseEntity<String> setCurrentChatByUsername(@RequestParam String username) {
+        if (!notificationService.existByUsername(username)) {
             return new ResponseEntity<>("You must to set available chat id",HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(notificationService.setCurrentChatId(chatId), HttpStatus.OK);
+        return new ResponseEntity<>(notificationService.setCurrentChatByUsername(username), HttpStatus.OK);
     }
 
     @PostMapping("/sendMessage")

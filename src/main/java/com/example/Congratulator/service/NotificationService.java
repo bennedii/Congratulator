@@ -23,6 +23,9 @@ public class NotificationService {
         this.userRepository = userRepository;
         this.birthdayService = birthdayService;
     }
+    public boolean existByUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
 
     public boolean isChatIdIsValid(String chatId) {
         return userRepository.existsById(Long.parseLong(chatId));
@@ -30,6 +33,10 @@ public class NotificationService {
     public String setCurrentChatId(String chatId) {
         currentChatId = chatId;
         return currentChatId;
+    }
+    public String setCurrentChatByUsername(String username) {
+        return this.currentChatId = userRepository.findByUsername(username).get()
+                .getChatId();
     }
 
     public void sendMessage(String message) {
@@ -40,7 +47,7 @@ public class NotificationService {
         bot.sendImage(currentChatId, imageText, photoUrl);
     }
 
-    @Scheduled(fixedRate = 200000000)
+    @Scheduled(cron = "0 0 10 * * ?")
     public void autoNotifications(){
         List<BirthdayEntity> todayBirthdays = birthdayService.getTodayBirthdays();
         List<BirthdayEntity> upcomingBirthdays = birthdayService.getBirthdaysInOneWeek();

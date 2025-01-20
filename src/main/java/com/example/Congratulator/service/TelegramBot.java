@@ -46,7 +46,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             User user = update.getMessage().getFrom();
             String chatId = update.getMessage().getChatId().toString();
 
-            if (userRepository.existsByUsername(user.getUserName())) {
+            if (!userRepository.existsByUsername(user.getUserName())) {
                 TelegramUser newUser = TelegramUser.builder()
                         .username(user.getUserName())
                         .lastName(user.getLastName())
