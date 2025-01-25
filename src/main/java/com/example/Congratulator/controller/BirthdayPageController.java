@@ -29,7 +29,7 @@ public class BirthdayPageController {
     public String getUpdatePage(@PathVariable Long id, Model model) {
         BirthdayEntity birthday = bService.getBirthdayById(id);
         model.addAttribute("birthday", birthday);
-        return "updateBirthday";
+        return "updatePage";
     }
 
     @PostMapping("/update/{id}")
